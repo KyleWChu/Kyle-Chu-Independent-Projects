@@ -19,7 +19,7 @@ spyTenPercentDrop = 320.4
 name = soup.find('h1', attrs={"data-reactid": "7"}).text
 price = float(soup.find('span', attrs={"data-reactid": "50"}).text)
 
-#Function to check price of ETF
+#Function to check price of ETF, return a boolean to stop the while loop and only email the user once
 def checking_price():
     if(price < spyTenPercentDrop):
         send_mail()
@@ -50,7 +50,7 @@ def send_mail():
     server.quit()
 
 
-#Call Functions
+#Call Functions, checking_price returns a boolean to break out of loop and only email the user once
 while(checking_price()):
     checking_price()
     time.sleep(10)
