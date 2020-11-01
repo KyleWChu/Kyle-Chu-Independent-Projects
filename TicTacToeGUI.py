@@ -1,4 +1,4 @@
-#Tic Tac Toe with GUI
+#Tic Tac Toe with GUI using Tkinter
 
 from tkinter import *
 from tkinter import messagebox
@@ -31,150 +31,76 @@ def checkWin():
 
 ###Check for X's Wins
     #First Row X
-    if b1["text"] == "X" and b2["text"] == "X" and b3["text"] == "X":
+    if b1["text"] != " " and b1["text"] == b2["text"] and b2["text"] == b3["text"]:
         b1.configure(highlightbackground="red")
         b2.configure(highlightbackground="red")
         b3.configure(highlightbackground="red")
         winner = True
-        messagebox.showinfo("Tic Tac Toe", "X is Winner!")
+        messagebox.showinfo("Tic Tac Toe", b1["text"] +  " is the Winner!")
         disableAllButtons()
 
-    #Second Row X
-    elif b4["text"] == "X" and b5["text"] == "X" and b6["text"] == "X":
-        b1.configure(highlightbackground="red")
-        b2.configure(highlightbackground="red")
-        b3.configure(highlightbackground="red")
+   #Second Row
+    elif b4["text"] != " " and b4["text"] == b5["text"] and b5["text"] == b6["text"]:
+        b4.configure(highlightbackground="red")
+        b5.configure(highlightbackground="red")
+        b6.configure(highlightbackground="red")
         winner = True
-        messagebox.showinfo("Tic Tac Toe", "X is Winner!")
+        messagebox.showinfo("Tic Tac Toe", b4["text"] +  " is the Winner!")
         disableAllButtons()
 
-    #Third Row X
-    elif b7["text"] == "X" and b8["text"] == "X" and b9["text"] == "X":
+    #Third Row
+    elif b7["text"] != " " and b7["text"] == b8["text"] and b8["text"] == b9["text"]:
         b7.configure(highlightbackground="red")
         b8.configure(highlightbackground="red")
         b9.configure(highlightbackground="red")
         winner = True
-        messagebox.showinfo("Tic Tac Toe", "X is Winner!")
+        messagebox.showinfo("Tic Tac Toe", b7["text"] +  " is the Winner!")
         disableAllButtons()
 
-    #First Column X
-    elif b1["text"] == "X" and b4["text"] == "X" and b7["text"] == "X":
+    #First Column
+    elif b1["text"] != " " and b1["text"] == b4["text"] and b4["text"] == b7["text"]:
         b1.configure(highlightbackground="red")
         b4.configure(highlightbackground="red")
         b7.configure(highlightbackground="red")
         winner = True
-        messagebox.showinfo("Tic Tac Toe", "X is Winner!")
+        messagebox.showinfo("Tic Tac Toe", b1["text"] +  " is the Winner!")
         disableAllButtons()
 
-    #Second Column X
-    elif b2["text"] == "X" and b5["text"] == "X" and b8["text"] == "X":
+    #Second Column
+    elif b2["text"] != " " and b2["text"] == b5["text"] and b5["text"] == b8["text"]:
         b2.configure(highlightbackground="red")
         b5.configure(highlightbackground="red")
         b8.configure(highlightbackground="red")
         winner = True
-        messagebox.showinfo("Tic Tac Toe", "X is Winner!")
+        messagebox.showinfo("Tic Tac Toe", b2["text"] +  " is the Winner!")
         disableAllButtons()
 
-    #Third Column X
-    elif b3["text"] == "X" and b6["text"] == "X" and b9["text"] == "X":
+    #Third Column
+    elif b3["text"] != " " and b3["text"] == b6["text"] and b6["text"] == b9["text"]:
         b3.configure(highlightbackground="red")
         b6.configure(highlightbackground="red")
         b9.configure(highlightbackground="red")
         winner = True
-        messagebox.showinfo("Tic Tac Toe", "X is Winner!")
+        messagebox.showinfo("Tic Tac Toe", b3["text"] +  " is the Winner!")
         disableAllButtons()
     
     #Top Left to Bottom Right Diagonal
-    elif b1["text"] == "X" and b5["text"] == "X" and b9["text"] == "X":
+    elif b1["text"] != " " and b1["text"] == b5["text"] and b5["text"] == b9["text"]:
         b1.configure(highlightbackground="red")
         b5.configure(highlightbackground="red")
         b9.configure(highlightbackground="red")
         winner = True
-        messagebox.showinfo("Tic Tac Toe", "X is Winner!")
+        messagebox.showinfo("Tic Tac Toe", b1["text"] +  " is the Winner!")
         disableAllButtons()
 
     #Bottom Left to Top Right Diagonal
-    elif b3["text"] == "X" and b5["text"] == "X" and b7["text"] == "X":
+    elif b3["text"] != " " and b3["text"] == b5["text"] and b5["text"] == b7["text"]:
         b3.configure(highlightbackground="red")
         b5.configure(highlightbackground="red")
         b7.configure(highlightbackground="red")
         winner = True
-        messagebox.showinfo("Tic Tac Toe", "X is Winner!")
+        messagebox.showinfo("Tic Tac Toe", b3["text"] +  " is the Winner!")
         disableAllButtons()    
-
-###Check for O's Wins
-#First Row O
-    elif b1["text"] == "O" and b2["text"] == "O" and b3["text"] == "O":
-        b1.configure(highlightbackground="blue")
-        b2.configure(highlightbackground="blue")
-        b3.configure(highlightbackground="blue")
-        winner = True
-        messagebox.showinfo("Tic Tac Toe", "O is Winner!")
-        disableAllButtons()
-
-    #Second Row O
-    elif b4["text"] == "O" and b5["text"] == "O" and b6["text"] == "O":
-        b1.configure(highlightbackground="blue")
-        b2.configure(highlightbackground="blue")
-        b3.configure(highlightbackground="blue")
-        winner = True
-        messagebox.showinfo("Tic Tac Toe", "O is Winner!")
-        disableAllButtons()
-
-    #Third Row O
-    elif b7["text"] == "O" and b8["text"] == "O" and b9["text"] == "O":
-        b7.configure(highlightbackground="blue")
-        b8.configure(highlightbackground="blue")
-        b9.configure(highlightbackground="blue")
-        winner = True
-        messagebox.showinfo("Tic Tac Toe", "O is Winner!")
-        disableAllButtons()
-
-    #First Column O
-    elif b1["text"] == "O" and b4["text"] == "O" and b7["text"] == "O":
-        b1.configure(highlightbackground="blue")
-        b4.configure(highlightbackground="blue")
-        b7.configure(highlightbackground="blue")
-        winner = True
-        messagebox.showinfo("Tic Tac Toe", "O is Winner!")
-        disableAllButtons()
-
-    #Second Column O
-    elif b2["text"] == "O" and b5["text"] == "O" and b8["text"] == "O":
-        b2.configure(highlightbackground="blue")
-        b5.configure(highlightbackground="blue")
-        b8.configure(highlightbackground="blue")
-        winner = True
-        messagebox.showinfo("Tic Tac Toe", "O is Winner!")
-        disableAllButtons()
-
-
-    #Third Column O
-    elif b3["text"] == "O" and b6["text"] == "O" and b9["text"] == "O":
-        b3.configure(highlightbackground="blue")
-        b6.configure(highlightbackground="blue")
-        b9.configure(highlightbackground="blue")
-        winner = True
-        messagebox.showinfo("Tic Tac Toe", "O is Winner!")
-        disableAllButtons()
-    
-    #Top Left to Bottom Right Diagonal
-    elif b1["text"] == "O" and b5["text"] == "O" and b9["text"] == "O":
-        b1.configure(highlightbackground="blue")
-        b5.configure(highlightbackground="blue")
-        b9.configure(highlightbackground="blue")
-        winner = True
-        messagebox.showinfo("Tic Tac Toe", "O is Winner!")
-        disableAllButtons()
-
-    #Bottom Left to Top Right Diagonal
-    elif b3["text"] == "O" and b5["text"] == "O" and b7["text"] == "O":
-        b3.configure(highlightbackground="blue")
-        b5.configure(highlightbackground="blue")
-        b7.configure(highlightbackground="blue")
-        winner = True
-        messagebox.showinfo("Tic Tac Toe", "O is Winner!")
-        disableAllButtons()
 
     #Check if Tie
     if count == 9 and winner == False:
