@@ -1,27 +1,35 @@
-# Get S&P ETF price and send an email to me when it drops 10% from a predetermined high
-# By Kyle Chu, October 22, 2020
+# Get chosen stock price and send an email to user when it drops a chosen percent from a conservative 52 week high
+# By Kyle Chu, Started October 22, 2020
 
 import requests
 import smtplib
 import time
 from bs4 import BeautifulSoup
 
+#Get Input from User:
+print("I will email you when a stock drops a certain percent below its peak (3 percent below 52 week range to be conservative)")
+symbol = input("Enter Stock Symbol: ").upper()
+desiredPercentDrop = float(input("Enter Desired Percent Drop (ex. 10, 15, 20): "))
+conservativePeak = .97
+finalDesiredPercentOf = (100 - desiredPercentDrop)/100
+
 #Web Scraping
-URL = 'https://finance.yahoo.com/quote/SPY?p=SPY&.tsrc=fin-srch'
+URL = 'https://finance.yahoo.com/quote/'+ symbol +'?p='+ symbol +'&.tsrc=fin-srch'
 headers = {"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.80 Safari/537.36'}
 page = requests.get(URL, headers = headers)
 soup = BeautifulSoup(page.content, 'html.parser')
 
-#Variables
-spyTenPercentDrop = 320.4
-
 #Get the name and price from yahoo finance, price is a float
 name = soup.find('h1', attrs={"data-reactid": "7"}).text
-price = float(soup.find('span', attrs={"data-reactid": "50"}).text)
+currentPrice = float(soup.find('span', attrs={"data-reactid": "50"}).text)
+getPeakPrice = soup.find('td', attrs={"data-reactid": "121"}).text
 
-#Function to check price of ETF, return a boolean to stop the while loop and only email the user once
+#Get the target price to either email or not email
+peakPriceWithDrop = (float(getPeakPrice.split('-')[1].strip()) * conservativePeak) * finalDesiredPercentOf
+
+#Function to check price of ETF
 def checking_price():
-    if(price < spyTenPercentDrop):
+    if(currentPrice < peakPriceWithDrop):
         send_mail()
         return False
     return True
@@ -37,7 +45,7 @@ def send_mail():
     #Login and Construct Message
     server.login('kylechuf@gmail.com', 'dhvkuhkjfphqquew')
     subject = "Price of " + name + " Dropped"
-    body = "Check on Yahoo Finance: https://finance.yahoo.com/quote/SPY?p=SPY&.tsrc=fin-srch"
+    body = "Check on Yahoo Finance: " + URL
 
     #Send Message
     msg = f"Subject: {subject}\n\n{body}"
@@ -50,7 +58,8 @@ def send_mail():
     server.quit()
 
 
-#Call Functions, checking_price returns a boolean to break out of loop and only email the user once
+#Call Functions
+print("looping started")
 while(checking_price()):
     checking_price()
     time.sleep(10)
